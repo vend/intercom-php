@@ -108,9 +108,14 @@ class Intercom
      * @param  integer $perPage The number of results to return on each page
      * @return object
      **/
-    public function getAllUsers($page = null, $perPage = null)
+    public function getAllUsers($page = 1, $perPage = null)
     {
-        $path = 'users';
+        $path = 'users/?page=' . $page;
+
+        if (!empty($perPage)) {
+            $path .= '&per_page=' . $perPage;
+        }
+
         return $this->httpCall($this->apiEndpoint . $path);
     }
 
