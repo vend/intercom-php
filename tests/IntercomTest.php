@@ -7,7 +7,7 @@ class IntercomTest extends PHPUnit_Framework_TestCase
     {
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
 
-        $users = $intercom->getAllUsers();
+        $users = $intercom->getAllUsers(1, 1);
 
         $this->assertTrue(is_object($users));
         $this->assertObjectHasAttribute('users', $users);
