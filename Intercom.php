@@ -37,6 +37,7 @@ class Intercom
     private $apiEndpoint = 'https://api.intercom.io/v1/';
     private $appId = null;
     private $apiKey = null;
+    private $lastError = null;
     private $debug = false;
 
     /**
@@ -98,6 +99,10 @@ class Intercom
         curl_setopt($ch, CURLOPT_USERPWD, $this->appId . ':' . $this->apiKey);
 
         $response = curl_exec($ch);
+
+        // Set HTTP error, if any
+        $this->lastError = array('code' => curl_errno($ch), 'message' => curl_error($ch));
+
         return json_decode($response);
     }
 
@@ -275,6 +280,16 @@ class Intercom
         $path = 'users/impressions';
 
         return $this->httpCall($this->apiEndpoint . $path, 'POST', json_encode($data));
+    }
+
+    /**
+     * Get the last error from curl.
+     * 
+     * @return array Array with 'code' and 'message' indexes
+     */
+    public function getLastError()
+    {
+        return $this->lastError;
     }
 }
 ?>
