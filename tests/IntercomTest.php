@@ -8,8 +8,9 @@ class IntercomTest extends PHPUnit_Framework_TestCase
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
 
         $users = $intercom->getAllUsers(1, 1);
+        $lastError = $intercom->getLastError();
 
-        $this->assertTrue(is_object($users));
+        $this->assertTrue(is_object($users), $lastError['code'] . ': ' . $lastError['message']);
         $this->assertObjectHasAttribute('users', $users);
     }
 
@@ -20,8 +21,9 @@ class IntercomTest extends PHPUnit_Framework_TestCase
         $userId = 'userId001';
         $email = 'email@example.com';
         $res = $intercom->createUser('userId001', $email);
+        $lastError = $intercom->getLastError();
 
-        $this->assertTrue(is_object($res));
+        $this->assertTrue(is_object($res), $lastError['code'] . ': ' . $lastError['message']);
         $this->assertObjectHasAttribute('email', $res);
         $this->assertEquals($email, $res->email);
         $this->assertObjectHasAttribute('user_id', $res);
@@ -33,8 +35,9 @@ class IntercomTest extends PHPUnit_Framework_TestCase
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
 
         $res = $intercom->createImpression('userId001');
+        $lastError = $intercom->getLastError();
 
-        $this->assertTrue(is_object($res));
+        $this->assertTrue(is_object($res), $lastError['code'] . ': ' . $lastError['message']);
         $this->assertObjectHasAttribute('unread_messages', $res);
     }
 }
