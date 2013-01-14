@@ -2,6 +2,8 @@ Intercom is a customer relationship management and messaging tool for web app ow
 
 This library provides connectivity with the Intercom API (https://api.intercom.io)
 
+[![Build Status](https://travis-ci.org/nubera-ebusiness/intercom-php.png?branch=master)](https://travis-ci.org/nubera-ebusiness/intercom-php)
+
 ## License
 
 Copyright 2013 Nubera eBusiness S.L. All rights reserved.
