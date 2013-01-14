@@ -94,7 +94,7 @@ class Intercom
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_BUFFERSIZE, 4096);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
         curl_setopt($ch, CURLOPT_USERPWD, $this->appId . ':' . $this->apiKey);
 
