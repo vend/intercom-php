@@ -8,6 +8,12 @@ class IntercomTest extends PHPUnit_Framework_TestCase
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
 
         $users = $intercom->getAllUsers(1, 1);
+
+        // Retry if failing on the first attempt.
+        if (!is_object($users)) {
+            $users = $intercom->getAllUsers(1, 1);
+        }
+
         $lastError = $intercom->getLastError();
 
         $this->assertTrue(is_object($users), $lastError['code'] . ': ' . $lastError['message']);
