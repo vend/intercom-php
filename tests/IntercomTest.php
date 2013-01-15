@@ -20,6 +20,9 @@ class IntercomTest extends PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('users', $users);
     }
 
+    /**
+     * @group Travis
+     */
     public function testCreateUser()
     {
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
@@ -36,6 +39,9 @@ class IntercomTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($userId, $res->user_id);
     }
 
+    /**
+     * @group Travis
+     */
     public function testCreateImpression()
     {
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
