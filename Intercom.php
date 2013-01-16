@@ -34,10 +34,29 @@
  */
 class Intercom
 {
+    /**
+     * The Intercom API endpoint
+     */
     private $apiEndpoint = 'https://api.intercom.io/v1/';
+
+    /**
+     * The Intercom application ID
+     */
     private $appId = null;
+
+    /**
+     * The Intercom API key
+     */
     private $apiKey = null;
+
+    /**
+     * Last HTTP error obtained from curl_errno() and curl_error()
+     */
     private $lastError = null;
+
+    /**
+     * Whether we are in debug mode. This is set by the constructor
+     */
     private $debug = false;
 
     /**
