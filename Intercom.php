@@ -197,10 +197,9 @@ class Intercom
             $data['name'] = $name;
         }
 
-        if (empty($createdAt)) {
-            $createdAt = time();
+        if (!empty($createdAt)) {
+            $data['created_at'] = $createdAt;
         }
-        $data['created_at'] = $createdAt;
 
         if (!empty($lastSeenIp)) {
             $data['last_seen_ip'] = $lastSeenIp;
