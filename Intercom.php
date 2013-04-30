@@ -160,6 +160,24 @@ class Intercom
         $path .= urlencode($id);
         return $this->httpCall($this->apiEndpoint . $path);
     }
+    
+    /**
+     * Get the message thread of a specific user from your Intercom account.
+     * 
+     * @param  string $id The ID of the user to retrieve thread for
+     * @return object
+     **/
+    public function getThread($id)
+    {
+        $path = 'users/message_threads';
+        if (preg_match('/@/', $id)) {
+            $path .= '?email=';
+        } else {
+            $path .= '?user_id=';
+        }
+        $path .= urlencode($id);
+        return $this->httpCall($this->apiEndpoint . $path);
+    }
 
     /**
      * Create a user on your Intercom account.
