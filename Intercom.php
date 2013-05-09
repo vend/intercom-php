@@ -111,12 +111,9 @@ class Intercom
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
             curl_setopt($ch, CURLOPT_POST, true);
         } elseif ($method == 'PUT') {
-            $putFile = tmpfile();
-            fwrite($putFile, $post_data);
-            fseek($putFile, 0);
-            curl_setopt($ch, CURLOPT_INFILE, $putFile);
-            curl_setopt($ch, CURLOPT_INFILESIZE, strlen($post_data));
-            curl_setopt($ch, CURLOPT_PUT, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+            $headers[] = 'Content-Length: ' . strlen($post_data);
         } elseif ($method != 'GET') {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         }
