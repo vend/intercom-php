@@ -95,11 +95,7 @@ class Intercom
      **/
     private function httpCall($url, $method = 'GET', $post_data = null)
     {
-        $headers = array();
-        if ($post_data) {
-            $headers[] = 'Content-Type: application/json';
-            $headers[] = 'Expect:';
-        }
+        $headers = array('Content-Type: application/json');
 
         $ch = curl_init($url);
 
