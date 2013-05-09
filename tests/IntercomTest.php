@@ -42,6 +42,25 @@ class IntercomTest extends PHPUnit_Framework_TestCase
     /**
      * @group Travis
      */
+    public function testUpdateUser()
+    {
+        $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
+
+        $userId = 'userId001';
+        $email = 'newemail@example.com';
+        $res = $intercom->updateUser('userId001', $email);
+        $lastError = $intercom->getLastError();
+
+        $this->assertTrue(is_object($res), $lastError['code'] . ': ' . $lastError['message']);
+        $this->assertObjectHasAttribute('email', $res);
+        $this->assertEquals($email, $res->email);
+        $this->assertObjectHasAttribute('user_id', $res);
+        $this->assertEquals($userId, $res->user_id);
+    }
+
+    /**
+     * @group Travis
+     */
     public function testCreateImpression()
     {
         $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
