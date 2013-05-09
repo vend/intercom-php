@@ -75,6 +75,17 @@ class Intercom
     }
 
     /**
+     * Check if a given value is an e-mail address.
+     *
+     * @param  string $value
+     * @return boolean
+     **/
+    private function isEmail($value)
+    {
+        return preg_match('/@/', $string);
+    }
+
+    /**
      * Make an HTTP call using curl.
      * 
      * @param  string $url       The URL to call
@@ -152,7 +163,7 @@ class Intercom
     public function getUser($id)
     {
         $path = 'users/';
-        if (preg_match('/@/', $id)) {
+        if ($this->isEmail($id)) {
             $path .= '?email=';
         } else {
             $path .= '?user_id=';
@@ -170,7 +181,7 @@ class Intercom
     public function getThread($id)
     {
         $path = 'users/message_threads';
-        if (preg_match('/@/', $id)) {
+        if ($this->isEmail($id)) {
             $path .= '?email=';
         } else {
             $path .= '?user_id=';
@@ -273,7 +284,7 @@ class Intercom
     public function deleteUser($id)
     {
         $path = 'users/';
-        if (preg_match('/@/', $id)) {
+        if ($this->isEmail($id)) {
             $path .= '?email=';
         } else {
             $path .= '?user_id=';
