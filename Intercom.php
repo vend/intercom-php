@@ -82,7 +82,7 @@ class Intercom
      **/
     private function isEmail($value)
     {
-        return preg_match('/@/', $string);
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 
     /**
