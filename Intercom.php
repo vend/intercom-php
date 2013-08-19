@@ -348,7 +348,7 @@ class Intercom
 
 
     /**
-     * Create a user on your Intercom account.
+     * Create a tag on your Intercom account.
      * 
      * @param  string $name         The tag's name (required)
      * @param  array  $emails       Array of users to tag (optional)
@@ -393,7 +393,7 @@ class Intercom
     }
 
     /**
-     * Create a user on your Intercom account.
+     * Create a tag on your Intercom account.
      * 
      * @param  string $name         The tag's name (required)
      * @param  array  $emails       Array of users to tag (optional)
