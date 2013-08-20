@@ -408,7 +408,7 @@ class Intercom
                                $action = null)
     {
         return $this->createTag($name, $emails, $userIds, $color, $action, 'PUT');
-    
 
     }
+}
 ?>
