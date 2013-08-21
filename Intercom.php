@@ -331,5 +331,84 @@ class Intercom
     {
         return $this->lastError;
     }
+
+
+    /**
+     * Get a specific tag from your Intercom account.
+     * 
+     * @param  string $name The Name of the tag to retrieve
+     * @return object
+     **/
+    public function getTag($name)
+    {
+        $path = 'tags/';
+        $path .= '?name=' . urlencode($name);
+        return $this->httpCall($this->apiEndpoint . $path);
+    }
+
+
+    /**
+     * Create a tag on your Intercom account.
+     * 
+     * @param  string $name         The tag's name (required)
+     * @param  array  $emails       Array of users to tag (optional)
+     * @param  array  $userIds      Array of user ids to tag (optional)
+     * @param  string $color        The color of the tag (must be "green", "red", "teal", "gold", "blue", or "purple").
+     * @param  string $action       required (if emails or userIds are not empty) — either "tag" or "untag"
+     * @param  string $method       HTTP method, to be used by updateTag()
+     **/
+    public function createTag($name,
+                               $emails = null,
+                               $userIds = null,
+                               $color = null,
+                               $action = null,
+                               $method = "POST")
+    {
+        $data = array();
+
+        $data['name'] = $name;
+
+        if (!empty($email)) {
+            $data['email'] = $email;
+        }
+
+        if (!empty($action)) {
+            $data['tag_or_untag'] = $action;
+        }
+
+        if (!empty($emails)) {      
+            $data['emails'] = $emails;
+        }
+
+        if (!empty($userIds)) {     
+            $data['user_ids'] = $userIds;
+        }
+
+        if (!empty($color)) {
+            $data['color'] = $color;
+        }
+
+        $path = 'tags';
+        return $this->httpCall($this->apiEndpoint . $path, $method, json_encode($data));
+    }
+
+    /**
+     * Create a tag on your Intercom account.
+     * 
+     * @param  string $name         The tag's name (required)
+     * @param  array  $emails       Array of users to tag (optional)
+     * @param  array  $userIds      Array of user ids to tag (optional)
+     * @param  string $color        The color of the tag (must be "green", "red", "teal", "gold", "blue", or "purple").
+     * @param  string $action       required (if emails or userIds are not empty) — either "tag" or "untag"
+     **/
+    public function updateTag($name,
+                               $emails = null,
+                               $userIds = null,
+                               $color = null,
+                               $action = null)
+    {
+        return $this->createTag($name, $emails, $userIds, $color, $action, 'PUT');
+
+    }
 }
 ?>
