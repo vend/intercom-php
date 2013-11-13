@@ -1,0 +1,9 @@
+# Eclipse IDE
+.project
+.settings
+.buildpath
+.manager
+.cache
+
+# Don't ignore .gitignore files (used to keep empty directories)
+!.gitignore

@@ -201,6 +201,7 @@ class Intercom
                                $email = null,
                                $name = null,
                                $customData = array(),
+                               $companyData = array(),
                                $createdAt = null,
                                $lastSeenIp = null,
                                $lastSeenUserAgent = null,
@@ -239,13 +240,17 @@ class Intercom
             $data['custom_data'] = $customData;
         }
 
+        if (!empty($companyData)) {
+            $data['companies'] = $companyData;
+        }
+
         $path = 'users';
         return $this->httpCall($this->apiEndpoint . $path, $method, json_encode($data));
     }
 
     /**
      * Update an existing user on your Intercom account.
-     * 
+     *
      * @param  string $id                The ID of the user to be updated
      * @param  string $email             The user's email address (optional)
      * @param  string $name              The user's name (optional)
@@ -260,6 +265,7 @@ class Intercom
                                $email = null,
                                $name = null,
                                $customData = array(),
+                               $companyData = array(),
                                $createdAt = null,
                                $lastSeenIp = null,
                                $lastSeenUserAgent = null,
