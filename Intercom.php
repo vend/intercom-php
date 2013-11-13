@@ -1,18 +1,18 @@
 <?php
 /**
  * Intercom is a customer relationship management and messaging tool for web app owners
- * 
+ *
  * This library provides connectivity with the Intercom API (https://api.intercom.io)
- * 
+ *
  * Basic usage:
- * 
+ *
  * 1. Configure Intercom with your access credentials
  * <code>
  * <?php
  * $intercom = new Intercom('dummy-app-id', 'dummy-api-key');
  * ?>
  * </code>
- * 
+ *
  * 2. Make requests to the API
  * <code>
  * <?php
@@ -21,7 +21,7 @@
  * var_dump($users);
  * ?>
  * </code>
- * 
+ *
  * @author    Bruno Pedro <bruno.pedro@cloudwork.com>
  * @copyright Copyright 2013 Nubera eBusiness S.L. All rights reserved.
  * @link      http://www.nubera.com/
@@ -30,7 +30,7 @@
 
 
 /**
- * Intercom.io API 
+ * Intercom.io API
  */
 class Intercom
 {
@@ -87,7 +87,7 @@ class Intercom
 
     /**
      * Make an HTTP call using curl.
-     * 
+     *
      * @param  string $url       The URL to call
      * @param  string $method    The HTTP method to use, by default GET
      * @param  string $post_data The data to send on an HTTP POST (optional)
@@ -118,7 +118,7 @@ class Intercom
         curl_setopt($ch, CURLOPT_BUFFERSIZE, 4096);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, $this->appId . ':' . $this->apiKey);
 
         $response = curl_exec($ch);
@@ -131,7 +131,7 @@ class Intercom
 
     /**
      * Get all users from your Intercom account.
-     * 
+     *
      * @param  integer $page    The results page number
      * @param  integer $perPage The number of results to return on each page
      * @return object
@@ -149,7 +149,7 @@ class Intercom
 
     /**
      * Get a specific user from your Intercom account.
-     * 
+     *
      * @param  string $id The ID of the user to retrieve
      * @return object
      **/
@@ -164,10 +164,10 @@ class Intercom
         $path .= urlencode($id);
         return $this->httpCall($this->apiEndpoint . $path);
     }
-    
+
     /**
      * Get the message thread of a specific user from your Intercom account.
-     * 
+     *
      * @param  string $id The ID of the user to retrieve thread for
      * @return object
      **/
@@ -185,7 +185,7 @@ class Intercom
 
     /**
      * Create a user on your Intercom account.
-     * 
+     *
      * @param  string $id                The ID of the user to be created
      * @param  string $email             The user's email address (optional)
      * @param  string $name              The user's name (optional)
@@ -271,12 +271,12 @@ class Intercom
                                $lastSeenUserAgent = null,
                                $lastRequestAt = null)
     {
-        return $this->createUser($id, $email, $name, $customData, $createdAt, $lastSeenIp, $lastSeenUserAgent, $lastRequestAt, 'PUT');
+        return $this->createUser($id, $email, $name, $customData, $companyData, $createdAt, $lastSeenIp, $lastSeenUserAgent, $lastRequestAt, 'PUT');
     }
 
     /**
      * Delete an existing user from your Intercom account
-     * 
+     *
      * @param  string $id The ID of the user to be deleted
      * @return object
      **/
@@ -294,7 +294,7 @@ class Intercom
 
     /**
      * Create an impression associated with a user on your Intercom account
-     * 
+     *
      * @param  string $userId     The ID of the user
      * @param  string $email      The email of the user (optional)
      * @param  string $userIp     The IP address of the user (optional)
@@ -330,7 +330,7 @@ class Intercom
 
     /**
      * Get the last error from curl.
-     * 
+     *
      * @return array Array with 'code' and 'message' indexes
      */
     public function getLastError()
@@ -341,7 +341,7 @@ class Intercom
 
     /**
      * Get a specific tag from your Intercom account.
-     * 
+     *
      * @param  string $name The Name of the tag to retrieve
      * @return object
      **/
@@ -355,7 +355,7 @@ class Intercom
 
     /**
      * Create a tag on your Intercom account.
-     * 
+     *
      * @param  string $name         The tag's name (required)
      * @param  array  $emails       Array of users to tag (optional)
      * @param  array  $userIds      Array of user ids to tag (optional)
@@ -382,11 +382,11 @@ class Intercom
             $data['tag_or_untag'] = $action;
         }
 
-        if (!empty($emails)) {      
+        if (!empty($emails)) {
             $data['emails'] = $emails;
         }
 
-        if (!empty($userIds)) {     
+        if (!empty($userIds)) {
             $data['user_ids'] = $userIds;
         }
 
@@ -400,7 +400,7 @@ class Intercom
 
     /**
      * Create a tag on your Intercom account.
-     * 
+     *
      * @param  string $name         The tag's name (required)
      * @param  array  $emails       Array of users to tag (optional)
      * @param  array  $userIds      Array of user ids to tag (optional)
